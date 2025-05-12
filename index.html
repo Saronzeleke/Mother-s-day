@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Mother's Day, Mom!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fce4ec, #e1bee7);
+            font-family: 'Arial', sans-serif;
+            overflow-y: auto;
+            animation: fadeInPage 2s ease forwards;
+            position: relative;
+            gap: 10px;
+            padding: 20px 0;
+        }
+
+        @keyframes fadeInPage {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #9c27b0, #f06292);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(240, 98, 146, 0.5);
+            animation: pulse 2s infinite, fadeIn 1s ease forwards;
+            text-align: center;
+            margin-bottom: 10px;
+            font-family: 'Pacifico', cursive;
+            opacity: 0;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff4d4d;
+            transform: rotate(-45deg);
+            animation: float 6s linear infinite;
+            opacity: 0.7;
+            bottom: -20px;
+        }
+
+        .heart.pink { background: #ff99cc; }
+        .heart.pink::before, .heart.pink::after { background: #ff99cc; }
+        .heart.purple { background: #ce93d8; }
+        .heart.purple::before, .heart.purple::after { background: #ce93d8; }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            left: 10px;
+            top: 0;
+        }
+
+        .flower {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            animation: float 8s linear infinite;
+            opacity: 0.8;
+            bottom: -30px;
+        }
+
+        .flower::before,
+        .flower::after,
+        .flower .petal1,
+        .flower .petal2 {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 10px;
+            background: #ff99cc;
+            border-radius: 50%;
+            top: 10px;
+            left: 0;
+        }
+
+        .flower::before { transform: rotate(0deg); }
+        .flower::after { transform: rotate(45deg); }
+        .flower .petal1 { transform: rotate(90deg); }
+        .flower .petal2 { transform: rotate(135deg); }
+
+        .flower-center {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ffff66;
+            border-radius: 50%;
+            top: 10px;
+            left: 10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(20px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            color: white;
+            background: linear-gradient(135deg, #9c27b0, #f06292);
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 2.5s;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #8e24aa, #ec407a);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(240, 98, 146, 0.4);
+        }
+
+        #message {
+            margin: 20px;
+            font-size: 1.8em;
+            color: #333;
+            text-align: center;
+            max-width: 600px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-family: 'Dancing Script', cursive;
+            line-height: 1.5;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 15px rgba(240, 98, 146, 0.3);
+            position: relative;
+        }
+
+        #message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M25 10 C20 0, 10 0, 5 10 A15 15 0 0 1 25 40 A15 15 0 0 1 45 10 C40 0, 30 0, 25 10" fill="rgba(255,99,146,0.1)"/></svg>') repeat;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        #message.show {
+            opacity: 1;
+        }
+
+        #message.wish0 {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        #message.wish1 {
+            animation: slideInRight 0.8s ease forwards;
+        }
+
+        #message.wish2 {
+            animation: scaleIn 0.8s ease forwards;
+        }
+
+        #message.wish3 {
+            animation: slideInUp 0.8s ease forwards;
+        }
+
+        @keyframes slideInLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            0% {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            80% {
+                transform: scale(1.1);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes slideInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            80% {
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .mom-pic {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            margin: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            animation: heartBeat 2.5s ease infinite;
+            border: 8px solid white;
+            object-fit: cover;
+            position: relative;
+            opacity: 0;
+            animation-delay: 1s;
+        }
+
+        .mom-pic::after {
+            content: '';
+            position: absolute;
+            top: -12px;
+            left: -12px;
+            width: 204px;
+            height: 204px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20 C40 5, 20 5, 10 20 A30 30 0 0 1 50 80 A30 30 0 0 1 90 20 C80 5, 60 5, 50 20" fill="none" stroke="rgba(240,98,146,0.5)" stroke-width="4"/></svg>');
+            background-size: cover;
+        }
+
+        .mom-pic:hover {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .family-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            animation: heartBeat 3s ease infinite;
+            border: 6px solid white;
+            object-fit: cover;
+            position: relative;
+            opacity: 0;
+            animation-delay: 2s;
+        }
+
+        .family-pic::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 170px;
+            height: 170px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20 C40 5, 20 5, 10 20 A30 30 0 0 1 50 80 A30 30 0 0 1 90 20 C80 5, 60 5, 50 20" fill="none" stroke="rgba(240,98,146,0.5)" stroke-width="4"/></svg>');
+            background-size: cover;
+        }
+
+        .family-pic:hover {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .mom-video {
+            width: 200px;
+            height: 150px;
+            border-radius: 15px;
+            margin: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 6px solid white;
+            object-fit: cover;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 1.5s;
+        }
+
+        .mom-video::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            width: 220px;
+            height: 170px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><path d="M50 20 C40 5, 20 5, 10 20 A30 30 0 0 1 50 80 A30 30 0 0 1 90 20 C80 5, 60 5, 50 20" fill="none" stroke="rgba(240,98,146,0.5)" stroke-width="4"/></svg>');
+            background-size: cover;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            10% {
+                transform: scale(1.03);
+            }
+            20% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(1.03);
+            }
+            40% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        #wishCounter {
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3s;
+        }
+
+        footer {
+            margin-top: 10px;
+            color: #666;
+            font-style: italic;
+            text-align: center;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+            animation-delay: 3.5s;
+        }
+
+        footer::after {
+            content: '💖';
+            position: absolute;
+            right: -20px;
+            top: 0;
+            animation: heartPulse 1.5s infinite;
+        }
+
+        @keyframes heartPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        audio {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            width: 200px;
+            opacity: 0.8;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        audio::-webkit-media-controls-panel {
+            background: linear-gradient(135deg, #f06292, #e1bee7);
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            #message {
+                font-size: 1.4em;
+                padding: 15px;
+                margin: 15px;
+            }
+            button {
+                padding: 12px 24px;
+                font-size: 1em;
+            }
+            .mom-pic {
+                width: 140px;
+                height: 140px;
+            }
+            .mom-pic::after {
+                width: 164px;
+                height: 164px;
+                top: -12px;
+                left: -12px;
+            }
+            .family-pic {
+                width: 120px;
+                height: 120px;
+            }
+            .family-pic::after {
+                width: 140px;
+                height: 140px;
+                top: -10px;
+                left: -10px;
+            }
+            .mom-video {
+                width: 160px;
+                height: 120px;
+            }
+            .mom-video::after {
+                width: 180px;
+                height: 140px;
+                top: -10px;
+                left: -10px;
+            }
+            audio {
+                width: 150px;
+                bottom: 5px;
+                right: 5px;
+            }
+        }
+
+        .confetti, .confetti-heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            opacity: 0;
+            animation: confettiFall 3s ease-in-out;
+        }
+
+        .confetti {
+            background-color: #f00;
+        }
+
+        .confetti-heart {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 10 10"><path d="M5 2 C4 0, 2 0, 1 2 A3 3 0 0 1 5 8 A3 3 0 0 1 9 2 C8 0, 6 0, 5 2" fill="rgba(240,98,146,1)"/></svg>');
+            background-size: cover;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Mother's Day, Mom! 💕</h1>
+    <img src="a1.jpg" onerror="this.src='https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" alt="Mom's Picture" class="mom-pic">
+   
+    <div class="im"><img src="f.jpg" onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80'" alt="Family Picture" class="family-pic">
+    <button onclick="showNextWish()">
+        <span>Next Loving Wish</span>
+        <span style="font-size: 1.3em;">🌸💜✨</span>
+    </button>
+    <div id="wishCounter"></div>
+    <div id="message"></div>
+    <footer>
+        Created with all Our love for you, Mom💕😍
+    </footer>
+    <audio controls autoplay loop muted>
+        <source src="a.mp3" type="audio/mp3">
+        Your love song awaits, Mom! 💕
+    </audio>
+
+    <script>
+        const wishes = [
+            "Dearest Mom, your boundless love lights up my world. Thank you for every sacrifice and smile you share with me.",
+            "Mom, your strength is my inspiration. May your life overflow with joy, love, and endless happiness.",
+            "You’ve shaped me into a woman of courage and grace. My love for you is eternal, Mom.",
+            "May every day bring you the blessings you deserve, Mom, for being my heart’s guiding star."
+        ];
+        let currentWishIndex = 0;
+        let clickCount = 0;
+
+        // Handle audio and video autoplay
+        window.onload = function() {
+            const audio = document.querySelector('audio');
+            const video = document.querySelector('video');
+            audio.volume = 0.3;
+            audio.muted = true;
+            video.muted = true;
+            audio.play().catch(e => console.log('Audio autoplay prevented:', e));
+            video.play().catch(e => console.log('Video autoplay prevented:', e));
+            setTimeout(() => {
+                audio.muted = false;
+                video.muted = false;
+            }, 100);
+
+            setTimeout(() => {
+                document.getElementById('wishCounter').textContent = 
+                    `Wish 1 of ${wishes.length}`;
+                document.getElementById('message').innerHTML = wishes[0];
+                document.getElementById('message').classList.add('show', 'wish0');
+                currentWishIndex = 1;
+            }, 1000);
+        };
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            const colors = ['red', 'pink', 'purple'];
+            heart.classList.add(colors[Math.floor(Math.random() * colors.length)]);
+            heart.style.left = (Math.sin(Date.now() / 1000) * 40 + 50) + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+
+        function createFlower() {
+            const flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = (Math.cos(Date.now() / 1000) * 40 + 50) + 'vw';
+            flower.style.animationDuration = Math.random() * 4 + 4 + 's';
+            const center = document.createElement('div');
+            center.className = 'flower-center';
+            const petal1 = document.createElement('div');
+            petal1.className = 'petal1';
+            const petal2 = document.createElement('div');
+            petal2.className = 'petal2';
+            flower.appendChild(center);
+            flower.appendChild(petal1);
+            flower.appendChild(petal2);
+            document.body.appendChild(flower);
+            setTimeout(() => flower.remove(), 8000);
+        }
+
+        function createConfetti() {
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            for (let i = 0; i < 50; i++) {
+                const isHeart = Math.random() > 0.5;
+                const confetti = document.createElement('div');
+                confetti.className = isHeart ? 'confetti-heart' : 'confetti';
+                if (!isHeart) {
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                }
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 3000);
+            }
+        }
+
+        setInterval(createHeart, 300);
+        setInterval(createFlower, 500);
+
+        function showNextWish() {
+            clickCount++;
+            const message = document.getElementById('message');
+            message.classList.remove('show', 'wish0', 'wish1', 'wish2', 'wish3');
+            
+            document.getElementById('wishCounter').textContent = 
+                `Wish ${currentWishIndex + 1} of ${wishes.length}`;
+            
+            setTimeout(() => {
+                message.innerHTML = wishes[currentWishIndex];
+                message.classList.add('show', `wish${currentWishIndex}`);
+                currentWishIndex = (currentWishIndex + 1) % wishes.length;
+                
+                if (clickCount === 3) {
+                    createConfetti();
+                    setTimeout(() => {
+                        alert("Mom, you’re my forever hero! 💖");
+                    }, 500);
+                }
+            }, 300);
+        }
+    </script>
+</body>
+</html>
