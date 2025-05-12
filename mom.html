@@ -73,7 +73,7 @@
         function animateHeader() {
             const header = document.querySelector('h1');
             header.style.animation = 'none';
-            void header.offsetWidth; // Trigger reflow
+            void header.offsetWidth; 
             header.style.animation = 'colorChange 8s infinite alternate, pulse 0.5s ease, shake 0.5s ease';
             
             setTimeout(() => {
@@ -85,7 +85,7 @@
             img.classList.toggle('polygon');
             
             if (img.classList.contains('polygon')) {
-                // Create hearts around the polygon image
+                
                 createHeartsAroundImage(img);
             }
         }
@@ -125,7 +125,7 @@
             const heartColors = ['pink', 'red', 'purple', 'orange'];
             const flowerColors = ['pink', 'red', 'purple', 'yellow'];
             
-            // Create colorful hearts
+            
             for (let i = 0; i < 10; i++) {
                 const heart = document.createElement('div');
                 heart.className = `heart ${heartColors[Math.floor(Math.random() * heartColors.length)]}`;
