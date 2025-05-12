@@ -8,7 +8,7 @@
         let currentWishIndex = 0;
         let clickCount = 0;
 
-        // Handle audio autoplay
+      
         window.onload = function() {
             const audio = document.querySelector('audio');
             audio.volume = 0.3;
